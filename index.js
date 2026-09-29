@@ -11,13 +11,22 @@ client.once('ready', () => {
     console.log(`${client.user.tag} olarak giriş yapıldı! Bot aktif.`);
 });
 
+// Hoş Geldin Mesajı
 client.on('guildMemberAdd', async (member) => {
-    const kanalId = '1463174765387972864'; 
-    
+    const kanalId = '1463174765387972864';
     const kanal = member.guild.channels.cache.get(kanalId);
     if (kanal) {
-        kanal.send(`Favelaya Hoş Geldiin :) ${member}`);
+        kanal.send(`Favelaya Hoş Geldiiin :)${member}`);
     }
 });
 
-client.login('MTU1NDUwOTQwNDkzMjY2OTQ4MA.GJw8ca.82V_f85zkPcyCZQkh2D2D9yJmIKTZM5D0wf7-Q');
+// Görüşürüz Mesajı
+client.on('guildMemberRemove', async (member) => {
+    const kanalId = '1463174765387972864';
+    const kanal = member.guild.channels.cache.get(kanalId);
+    if (kanal) {
+        kanal.send(`Görüşürüz **${member.user.username}**, aramızdan ayrıldı... 🙁`);
+    }
+});
+
+client.login(process.env.TOKEN);
